@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_literary/presentation/common/search_bar_item.dart';
 import '../../folk_verses/ui/folk_verses_page.dart';
 import '../bloc/folk_verses_categories_bloc.dart';
 
@@ -35,41 +36,74 @@ class _ForkVersesCategoriesScreenState
     super.initState();
   }
 
+  Widget _buildListView() {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const FolkVersesPage(),
+                // Pass the arguments as part of the RouteSettings. The
+                // DetailScreen reads the arguments from these settings.
+                settings: RouteSettings(
+                  arguments: _bloc.filteredFolkVerses[index],
+                ),
+              ),
+            );
+          },
+          child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            color: Colors.white,
+            child: ListTile(
+              title: Text(
+                _bloc.filteredFolkVerses[index].description,
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      itemCount: _bloc.filteredFolkVerses.length,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FolkVersesCategoriesBloc, FolkVersesCategoriesState>(
         listener: (context, state) {
       // do stuff here based on BlocA's state
     }, builder: (context, state) {
+      Widget bodyWidget = const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: Text(
+          'Data Not Found',
+          style: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
       if (state is LoadingFolkVersesCategoriesState) {
         return const CircularProgressIndicator();
       }
-      return ListView.builder(
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FolkVersesPage(),
-                  // Pass the arguments as part of the RouteSettings. The
-                  // DetailScreen reads the arguments from these settings.
-                  settings: RouteSettings(
-                    arguments: _bloc.folkVersesCategories[index][0].toString(),
-                  ),
-                ),
-              );
-            },
-            child: Card(
-              margin: const EdgeInsets.all(16),
-              color: index == 0 ? Colors.amberAccent : Colors.white,
-              child: ListTile(
-                title: Text(_bloc.folkVersesCategories[index][1].toString()),
-              ),
-            ),
-          );
-        },
-        itemCount: _bloc.folkVersesCategories.length,
+      if (state is FinishLoadFolkVersesCategoriesState) {
+        if (state.isNoData == false) {
+          bodyWidget = _buildListView();
+        }
+      }
+      return Column(
+        children: [
+          SearchBarItem(textChangValue: (text) {
+            _bloc.add(FilterFolkVersesCategoriesEvent(text: text));
+          }),
+          Expanded(
+            child: bodyWidget,
+          ),
+        ],
       );
     });
   }

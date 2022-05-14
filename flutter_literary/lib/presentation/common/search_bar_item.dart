@@ -48,7 +48,10 @@ class _SearchBarItemState extends State<SearchBarItem> {
             child: const Icon(Icons.clear),
           ),
           border: InputBorder.none,
-          hintText: 'Enter a search term',
+          hintText: 'Tìm kiếm...',
+        ),
+        style: const TextStyle(
+          fontSize: 20,
         ),
       ),
     );

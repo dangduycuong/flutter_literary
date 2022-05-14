@@ -15,6 +15,10 @@ class LoadingFolkVersesCategoriesState extends FolkVersesCategoriesState {
 }
 
 class FinishLoadFolkVersesCategoriesState extends FolkVersesCategoriesState {
+  final bool isNoData;
+
+  const FinishLoadFolkVersesCategoriesState({required this.isNoData});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [isNoData];
 }
