@@ -58,12 +58,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
         title: Text(titleAppBar),
       ),
       body: Center(
-        child: Column(
-          children: [
-            SearchBarItem(textChangValue: (text) {}),
-            Expanded(child: _widgetOptions.elementAt(_selectedIndex)),
-          ],
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -79,7 +74,7 @@ class _BottomNavigationBarHomeState extends State<BottomNavigationBarHome> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: 'School',
+            label: 'Thành Ngữ',
             backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(

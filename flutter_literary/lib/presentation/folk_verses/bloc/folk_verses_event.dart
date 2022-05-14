@@ -14,3 +14,12 @@ class LoadFolkVersesEvent extends FolkVersesEvent {
   @override
   List<Object> get props => [fileName];
 }
+
+class FilterFolkVersesEvent extends FolkVersesEvent {
+  final String text;
+
+  const FilterFolkVersesEvent({required this.text});
+
+  @override
+  List<Object?> get props => [text];
+}

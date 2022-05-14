@@ -20,7 +20,8 @@ class ProverbCategoriesScreen extends StatefulWidget {
   const ProverbCategoriesScreen({Key? key}) : super(key: key);
 
   @override
-  _ProverbCategoriesScreenState createState() => _ProverbCategoriesScreenState();
+  _ProverbCategoriesScreenState createState() =>
+      _ProverbCategoriesScreenState();
 }
 
 class _ProverbCategoriesScreenState extends State<ProverbCategoriesScreen> {
@@ -48,14 +49,12 @@ class _ProverbCategoriesScreenState extends State<ProverbCategoriesScreen> {
                   margin: const EdgeInsets.all(16),
                   color: index == 0 ? Colors.amberAccent : Colors.white,
                   child: ListTile(
-                    leading: Text(_bloc.data[index][0].toString()),
-                    title: Text(_bloc.data[index][1].toString()),
-                    trailing: Text(_bloc.data[index][2].toString()),
+                    title: Text(_bloc.listProverbFile[index].description),
                   ),
                 ),
               );
             },
-            itemCount: _bloc.data.length,
+            itemCount: _bloc.listProverbFile.length,
           );
         },
         listener: (context, state) {});
