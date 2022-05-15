@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_literary/presentation/Idioms/ui/Idioms_page.dart';
 import 'package:flutter_literary/presentation/bottom_navigation_bar/ui/bottom_navigation_bar.dart';
 import 'package:flutter_literary/presentation/folk_verses/ui/folk_verses_page.dart';
+import 'package:flutter_literary/presentation/proverb/ui/proverb_page.dart';
 import 'package:flutter_literary/ui/csv_to_list.dart';
 import 'package:flutter_literary/ui/display_content.dart';
 import 'package:flutter_literary/ui/example.dart';
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         FolkVersesPage.routeName: (context) => const FolkVersesPage(),
+        ProverbPage.routeName: (context) => const ProverbPage(),
+        IdiomsPage.routeName: (context) => const IdiomsPage(),
       },
       // home: const HomePageScreen(),
       home: const BottomNavigationBarHome(),

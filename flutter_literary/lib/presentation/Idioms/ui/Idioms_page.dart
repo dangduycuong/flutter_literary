@@ -6,41 +6,41 @@ import 'package:flutter_literary/presentation/common/search_bar_item.dart';
 import 'package:flutter_literary/presentation/common/title_app_bar.dart';
 
 import '../../../data/file_name_model.dart';
-import '../bloc/folk_verses_bloc.dart';
+import '../bloc/idioms_bloc.dart';
 
-class FolkVersesPage extends StatelessWidget {
-  const FolkVersesPage({Key? key}) : super(key: key);
-
+class IdiomsPage extends StatelessWidget {
   static const routeName = 'FolkVersesPage';
+
+  const IdiomsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final file = ModalRoute.of(context)!.settings.arguments as FileNameModel;
     return BlocProvider(
-      create: (context) => FolkVersesBloc(),
-      child: FolkVersesScreen(
+      create: (context) => IdiomsBloc(),
+      child: IdiomsView(
         file: file,
       ),
     );
   }
 }
 
-class FolkVersesScreen extends StatefulWidget {
-  const FolkVersesScreen({Key? key, required this.file}) : super(key: key);
-
+class IdiomsView extends StatefulWidget {
   final FileNameModel file;
 
+  const IdiomsView({Key? key, required this.file}) : super(key: key);
+
   @override
-  _FolkVersesScreenState createState() => _FolkVersesScreenState();
+  _IdiomsViewState createState() => _IdiomsViewState();
 }
 
-class _FolkVersesScreenState extends State<FolkVersesScreen> {
-  late FolkVersesBloc _bloc;
+class _IdiomsViewState extends State<IdiomsView> {
+  late IdiomsBloc _bloc;
 
   @override
   void initState() {
-    _bloc = context.read<FolkVersesBloc>();
-    _bloc.add(LoadFolkVersesEvent(fileName: widget.file.fileName));
+    _bloc = context.read<IdiomsBloc>();
+    _bloc.add(LoadIdiomsEvent(fileName: widget.file.fileName));
     super.initState();
   }
 
@@ -56,14 +56,10 @@ class _FolkVersesScreenState extends State<FolkVersesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FolkVersesBloc, FolkVersesState>(
+    return BlocConsumer<IdiomsBloc, IdiomsState>(
         builder: (context, state) {
           Widget bodyWidget = noDataComponent();
-          if (state is LoadingFolkVersesState) {
-            return Text('Loading...');
-          }
-
-          if (state is FinishLoadFolkVersesState) {
+          if (state is FinishLoadIdiomsState) {
             if (state.isNoData == false) {
               bodyWidget = _buildListData();
             }
@@ -79,11 +75,9 @@ class _FolkVersesScreenState extends State<FolkVersesScreen> {
               body: Column(
                 children: [
                   SearchBarItem(textChangValue: (text) {
-                    _bloc.add(FilterFolkVersesEvent(text: text));
+                    _bloc.add(FilterIdiomsEvent(text: text));
                   }),
-                  Expanded(
-                    child: bodyWidget,
-                  ),
+                  Expanded(child: bodyWidget),
                 ],
               ),
             ),
