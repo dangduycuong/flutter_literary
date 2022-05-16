@@ -9,12 +9,16 @@ class ProverbInitial extends ProverbState {
   List<Object> get props => [];
 }
 
-class LoadingProverState extends ProverbState {
+class LoadingListProverbState extends ProverbState {
   @override
   List<Object> get props => [];
 }
 
-class LoadProverSuccessState extends ProverbState {
+class FinishLoadListProverbState extends ProverbState {
+  final bool isNoData;
+
+  const FinishLoadListProverbState({required this.isNoData});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [isNoData];
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_literary/presentation/common/card_view_title.dart';
 import 'package:flutter_literary/presentation/common/search_bar_item.dart';
 import '../../folk_verses/ui/folk_verses_page.dart';
 import '../bloc/folk_verses_categories_bloc.dart';
@@ -38,9 +39,11 @@ class _ForkVersesCategoriesScreenState
 
   Widget _buildListView() {
     return ListView.builder(
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -53,18 +56,7 @@ class _ForkVersesCategoriesScreenState
               ),
             );
           },
-          child: Card(
-            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            color: Colors.white,
-            child: ListTile(
-              title: Text(
-                _bloc.filteredFolkVerses[index].description,
-                style: const TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ),
+          child: cardViewTitle(_bloc.filteredFolkVerses[index].description),
         );
       },
       itemCount: _bloc.filteredFolkVerses.length,
