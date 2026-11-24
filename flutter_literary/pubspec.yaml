@@ -28,13 +28,30 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  cloud_firestore: ^7.2.0
+  firebase_auth: ^7.1.0
+  firebase_core: ^5.2.0
   flutter:
     sdk: flutter
   material_ui: ^1.1.0
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  # (Tùy chọn) Thêm 2 dòng dưới nếu bạn muốn hỗ trợ Adaptive Icon đẹp cho Android 8.0+
+  adaptive_icon_background: "#FAF3E0" # Mã màu nền kem ấm (đổi theo màu nền ảnh icon của bạn)
+  adaptive_icon_foreground: "assets/icon/app_icon.png"
+
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  firebase_core: ^5.2.0
+  cloud_firestore: ^7.2.0
+  firebase_auth: ^7.1.0
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +63,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
