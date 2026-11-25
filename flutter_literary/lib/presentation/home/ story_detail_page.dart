@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter_literary/core/theme/font_scale_controller.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../../data/models/literary_item.dart';
@@ -21,6 +21,7 @@ class StoryDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(item.category),
         actions: [
+          FontScaleActions(),
           IconButton(
             icon: Icon(
               isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -37,7 +38,7 @@ class StoryDetailPage extends StatelessWidget {
           children: [
             Text(
               item.title,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 6),
             Text(
@@ -50,7 +51,7 @@ class StoryDetailPage extends StatelessWidget {
             const Divider(height: 28),
             Text(
               item.content,
-              style: const TextStyle(fontSize: 17, height: 1.7),
+              style: const TextStyle(fontSize: 14, height: 1.7),
             ),
           ],
         ),

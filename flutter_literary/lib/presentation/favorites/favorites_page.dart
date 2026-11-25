@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter_literary/core/theme/font_scale_controller.dart';
 import 'package:material_ui/material_ui.dart'; // Đổi thành package:flutter/material.dart nếu SDK dùng bản cũ hơn 3.47
 
 import '../../core/constants/literary_type.dart';
@@ -19,6 +19,7 @@ class FavoritesPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Tủ Sách Yêu Thích'),
+          actions: const [FontScaleActions()],
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Ca dao'),

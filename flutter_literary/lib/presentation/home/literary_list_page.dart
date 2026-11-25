@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_literary/core/theme/font_scale_controller.dart';
 import 'package:material_ui/material_ui.dart'; // Đổi thành package:flutter/material.dart nếu SDK của bạn dùng bản cũ
 
 import '../../data/models/literary_item.dart';
@@ -29,7 +30,10 @@ class _LiteraryListPageState extends State<LiteraryListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: const [FontScaleActions()],
+      ),
       body: StreamBuilder<Set<String>>(
         stream: widget.repository.streamFavoriteIds(widget.uid),
         builder: (context, favSnap) {
